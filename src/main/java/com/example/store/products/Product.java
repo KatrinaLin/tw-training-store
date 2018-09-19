@@ -1,8 +1,14 @@
 package com.example.store.products;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class Product {
+
+    @Id
+    private Integer id;
     private String name;
     private BigDecimal price;
     private String unit;
