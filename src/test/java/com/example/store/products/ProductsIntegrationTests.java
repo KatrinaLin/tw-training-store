@@ -19,7 +19,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ProductsTests {
+public class ProductsIntegrationTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -32,6 +32,7 @@ public class ProductsTests {
         assertThat(productsEntity.getStatusCode(), is(HttpStatus.OK));
 
         List<Product> products = productsEntity.getBody();
+
         assertThat(products.size(), is(2));
 
         Product product = products.get(0);
