@@ -3,6 +3,8 @@ package com.example.store.shoppingCarts;
 import com.example.store.shoppingcarts.CartProduct;
 import com.mysql.cj.xdevapi.JsonArray;
 import net.minidev.json.JSONObject;
+import org.flywaydb.core.Flyway;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,15 @@ public class ShoppingCartsIntegrationTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    private Flyway flyway;
+
+    @Before
+    public void setUp() throws Exception {
+        flyway.clean();;
+        flyway.migrate();
+    }
+
     @Test
     public void should_add_items_to_shopping_cart_when_call_post_shopping_cart() {
         List<CartProduct> cart = new ArrayList<>();
@@ -36,10 +47,6 @@ public class ShoppingCartsIntegrationTests {
         cartProduct.setQuantity(3);
 
         cart.add(cartProduct);
-
-//        ResponseEntity<Void> cartEntity= restTemplate.postForEntity(
-//                "/api/users/1/shoppingcarts", cart, Void.class);
-//        assertThat(cartEntity.getStatusCode(), is(HttpStatus.OK));
 
         ResponseEntity<CartProduct[]> cartEntity= restTemplate.postForEntity(
                 "/api/users/1/shoppingcarts", cart, CartProduct[].class);
