@@ -38,8 +38,6 @@ public class OrdersIntegrationTest {
         List<OrderProduct> orderProductList = new ArrayList<OrderProduct>();
         OrderProduct orderProduct1 = new OrderProduct();
         orderProduct1.setProductId(1);
-        orderProduct1.setOrderId(1);
-        orderProduct1.setUserId(1);
         orderProduct1.setQuantity(3);
 
         orderProductList.add(orderProduct1);
