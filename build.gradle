@@ -31,6 +31,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('mysql:mysql-connector-java:6.0.6')
 	compile('org.flywaydb:flyway-core')
+	compile 'com.alibaba:fastjson:1.2.31'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
