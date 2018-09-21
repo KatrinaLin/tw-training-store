@@ -49,7 +49,6 @@ public class CartRepositoryTest {
         assertThat(cartInRepository.size(), is(2));
         assertThat(cartInRepository.get(0).getProductId(), is(1));
         assertThat(cartInRepository.get(1).getProductId(), is(2));
-
     }
 
     private List<CartProduct> getCartProducts() {

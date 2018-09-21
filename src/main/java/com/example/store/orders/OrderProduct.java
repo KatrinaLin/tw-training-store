@@ -1,12 +1,29 @@
 package com.example.store.orders;
 
-import javax.persistence.Entity;
+import org.hibernate.annotations.GeneratorType;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
 public class OrderProduct {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer productId;
     private Integer orderId;
     private Integer quantity;
-    private Integer userId;
+    private String name;
+    private BigDecimal price;
+    private String unit;
+
+    @ManyToOne
+    @JoinColumn(name = "orderId", insertable=false, updatable=false)
+    private Order order;
+
+    public OrderProduct() {
+    }
 
     public void setProductId(Integer productId) {
         this.productId = productId;
@@ -32,11 +49,27 @@ public class OrderProduct {
         return quantity;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public String getName() {
+        return name;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }
