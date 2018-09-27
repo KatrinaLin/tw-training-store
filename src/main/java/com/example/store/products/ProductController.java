@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,8 @@ public class ProductController {
     @HystrixCommand(fallbackMethod = "fallback")
     @GetMapping("/api/products")
     @PreAuthorize("hasRole('USER')")
-    public List<Product> getProductsList(HttpServletRequest request) {
+    public List<Product> getProductsList() {
+        System.out.println("===================================");
         return productService.getProducts();
     }
 
