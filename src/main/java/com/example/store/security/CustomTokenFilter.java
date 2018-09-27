@@ -30,7 +30,6 @@ public class CustomTokenFilter extends OncePerRequestFilter {
         final String username = request.getHeader("x-username");
         final String authoritiesString = request.getHeader("x-authorities");
 
-
         if (username == null) {
             return;
         }
@@ -47,6 +46,7 @@ public class CustomTokenFilter extends OncePerRequestFilter {
         }
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        authorities.forEach(auth -> System.out.println("***********" + auth));
+        filterChain.doFilter(request, response);
+        return;
     }
 }

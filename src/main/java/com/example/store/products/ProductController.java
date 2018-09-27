@@ -19,7 +19,6 @@ public class ProductController {
     @GetMapping("/api/products")
     @PreAuthorize("hasRole('USER')")
     public List<Product> getProductsList() {
-        System.out.println("===================================");
         return productService.getProducts();
     }
 
