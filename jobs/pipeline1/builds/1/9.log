@@ -1,0 +1,2 @@
+[pipeline1@2] Running shell script
++ git submodule update --recursive --remote

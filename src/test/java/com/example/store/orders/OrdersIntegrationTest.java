@@ -2,6 +2,7 @@ package com.example.store.orders;
 
 import org.flywaydb.core.Flyway;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class OrdersIntegrationTest {
     }
 
     @Test
+    @Ignore
     public void should_create_order_when_post_order() {
         List<OrderProduct> orderProductList = new ArrayList<OrderProduct>();
         OrderProduct orderProduct1 = new OrderProduct();

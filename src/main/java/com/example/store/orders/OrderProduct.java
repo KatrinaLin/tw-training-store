@@ -1,7 +1,5 @@
 package com.example.store.orders;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -17,10 +15,6 @@ public class OrderProduct {
     private String name;
     private BigDecimal price;
     private String unit;
-
-    @ManyToOne
-    @JoinColumn(name = "orderId", insertable=false, updatable=false)
-    private Order order;
 
     public OrderProduct() {
     }

@@ -1,0 +1,10 @@
+Started on Sep 25, 2018 8:26:05 AM
+Using strategy: Default
+[poll] Last Built Revision: Revision 8f07c841828e84516c8ce7f619a891bc65bd63f4 (refs/remotes/origin/master)
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git ls-remote -h https://github.com/KatrinaLin/springboot-todo.git # timeout=10
+Found 1 remote heads on https://github.com/KatrinaLin/springboot-todo.git
+[poll] Latest remote head revision on refs/heads/master is: 8f07c841828e84516c8ce7f619a891bc65bd63f4 - already built by 3
+Done. Took 1.9 sec
+No changes

@@ -1,0 +1,14 @@
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/KatrinaLin/springboot-todo.git # timeout=10
+Fetching upstream changes from https://github.com/KatrinaLin/springboot-todo.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/KatrinaLin/springboot-todo.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 8f07c841828e84516c8ce7f619a891bc65bd63f4 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8f07c841828e84516c8ce7f619a891bc65bd63f4
+Commit message: "feature: update todo item checked status"
+ > git rev-list --no-walk 8f07c841828e84516c8ce7f619a891bc65bd63f4 # timeout=10

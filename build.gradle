@@ -6,16 +6,20 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
         classpath('org.flywaydb:flyway-gradle-plugin:5.1.4')
+		classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+		// if using Stub Runner (consumer side) only remove this dependency
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.0.2.BUILD-SNAPSHOT"
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'spring-cloud-contract'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -25,13 +29,26 @@ repositories {
 	mavenCentral()
 }
 
+//dependencyManagement {
+//	imports {
+//		mavenBom 'org.springframework.cloud:spring-cloud-contract-dependencies:2.0.2.BUILD-SNAPSHOT'
+//	}
+//}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR1"
+	}
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('mysql:mysql-connector-java:6.0.6')
 	compile('org.flywaydb:flyway-core')
 	compile 'com.alibaba:fastjson:1.2.31'
+	compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+	testCompile 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -39,4 +56,23 @@ flyway {
 	url = 'jdbc:mysql://localhost:3307/store'
 	user = 'root'
 	password = 'abc123'
+}
+
+// In this section you define all Spring Cloud Contract Verifier Gradle Plugin properties
+contracts {
+	baseClassForTests = 'com.example.store.MvcTest'
+	// fully qualified name to a class that will be the base class for your generated test classes
+}// Unnecessary if you're using Spring Cloud Stub Runner only
+buildscript {
+	repositories {
+		maven {
+			url 'https://repo.spring.io/libs-snapshot'
+		}
+	}
+}
+
+repositories {
+	maven {
+		url 'https://repo.spring.io/libs-snapshot'
+	}
 }

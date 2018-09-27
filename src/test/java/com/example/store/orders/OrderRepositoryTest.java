@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -24,9 +23,6 @@ public class OrderRepositoryTest {
 
     @Autowired
     private OrderRepository orderRepository;
-
-    @Autowired
-    private OrderProductRepository orderProductRepository;
 
     @Autowired
     private TestEntityManager testEntityManager;
@@ -50,8 +46,8 @@ public class OrderRepositoryTest {
         orderProductList.add(orderProduct1);
 
         OrderProduct orderProduct2 = new OrderProduct();
-        orderProduct2.setProductId(1);
-        orderProduct2.setQuantity(3);
+        orderProduct2.setProductId(2);
+        orderProduct2.setQuantity(2);
 
         orderProductList.add(orderProduct2);
 
@@ -60,10 +56,13 @@ public class OrderRepositoryTest {
         order.setProductList(orderProductList);
 
 //        orderProductList.forEach(orderProduct -> testEntityManager.persist(orderProduct));
-        testEntityManager.persist(order);
+//        testEntityManager.persist(order);
 
+        orderRepository.save(order);
         Order repoOrder = orderRepository.findById(1).orElse(new Order());
 
         assertThat(repoOrder.getProductList().size(), is(2));
+        assertThat(repoOrder.getProductList().get(0).getProductId(), is(1));
+        assertThat(repoOrder.getProductList().get(1).getProductId(), is(2));
     }
 }

@@ -3,6 +3,7 @@ package com.example.store.products;
 import org.flywaydb.core.Flyway;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,9 @@ public class ProductsIntegrationTests {
         List<Product> products = productsEntity.getBody();
 
         Product product = products.get(0);
-        assertThat(product.getName(), is("Coke"));
+        assertThat(product.getName(), is("可乐"));
         assertThat(product.getPrice(), is(BigDecimal.valueOf(4.5)));
-        assertThat(product.getUnit(), is("bottle"));
+        assertThat(product.getUnit(), is("瓶"));
         assertThat(product.getTotalAmount(), is(10));
         assertThat(product.getImgUrl(), is("/api/img/1"));
     }

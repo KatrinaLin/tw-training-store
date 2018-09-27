@@ -13,10 +13,6 @@ public class OrderController {
 
     @PostMapping("/api/users/1/orders")
     public Order createOrder(@RequestBody List<OrderProduct> orderProductList) {
-//        Order order = new Order();
-//        order.setProductList(orderProductList);
-//
-//        return new ResponseEntity(order, HttpStatus.OK);
         return orderService.createOrder(orderProductList);
     }
 }

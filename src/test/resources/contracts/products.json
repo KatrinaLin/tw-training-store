@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "可乐",
+    "price": 4.5,
+    "unit": "瓶",
+    "totalAmount": 100,
+    "imgUrl": "/api/img/1"
+  },
+  {
+    "id": 2,
+    "name": "雪碧",
+    "price": 4.5,
+    "unit": "罐",
+    "totalAmount": 10,
+    "imgUrl": "/api/img/2"
+  }
+]
