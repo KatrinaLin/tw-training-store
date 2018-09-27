@@ -20,7 +20,6 @@ public class ProductController {
     @GetMapping("/api/products")
     @PreAuthorize("hasRole('USER')")
     public List<Product> getProductsList(HttpServletRequest request) {
-        System.out.println(request.getHeader("x-authorities"));
         return productService.getProducts();
     }
 
